@@ -1,14 +1,12 @@
 (function() {
+  // ===== MOBILE/TABLET DETECTION =====
   const ua = navigator.userAgent || navigator.vendor || window.opera;
   const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
   const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   const isSmallScreen = Math.min(window.innerWidth, window.innerHeight) <= 820;
-
-  // Mobile/tablet detection: any of the three conditions
   const isMobileOrTablet = isMobileUA || hasTouch || isSmallScreen;
   const onScanPage = window.location.pathname.includes('scan.html');
 
-  // Redirect desktop users only if truly not mobile/tablet
   if (!isMobileOrTablet && !onScanPage) {
     window.location.replace('/scan.html');
   }
@@ -47,7 +45,7 @@
     if (e.target.tagName === 'IMG') e.preventDefault();
   });
 
-  // ===== BLOCK CONSOLE =====
+  // ===== BLOCK CONSOLE ACCESS =====
   (function() {
     const devtools = /./;
     devtools.toString = function() {
