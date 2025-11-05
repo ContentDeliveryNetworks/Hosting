@@ -1,1 +1,1 @@
-const allowedCountry="IN";const redirectURL="/region";fetch("https://ipinfo.io/json?token=").then(res=>res.json()).then(data=>{if(!data.country||data.country!==allowedCountry){if(window.location.pathname!==redirectURL){window.location.href=redirectURL}}}).catch(err=>{console.error("Failed to fetch location info:",err);if(window.location.pathname!==redirectURL){window.location.href=redirectURL}})
+s
