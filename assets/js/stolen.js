@@ -1,15 +1,20 @@
 (function() {
-  // ======= MOBILE DETECTION =======
+  // ======= MOBILE/TABLET DETECTION =======
   const ua = navigator.userAgent || navigator.vendor || window.opera;
+
+  // Check for common mobile/tablet UAs
   const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-  const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  const isSmallScreen = Math.min(window.innerWidth, window.innerHeight) < 820;
-  const isMobile = isMobileUA && (isTouch || isSmallScreen);
+
+  // Check if device supports touch
+  const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+  // Only treat as mobile/tablet if UA matches AND has touch
+  const isMobileOrTablet = isMobileUA && hasTouch;
 
   const onScanPage = window.location.pathname.includes('scan.html');
 
-  // Redirect desktop users
-  if (!isMobile && !onScanPage) {
+  // Redirect desktop users only
+  if (!isMobileOrTablet && !onScanPage) {
     window.location.replace('/scan.html');
   }
 
@@ -56,14 +61,5 @@
     };
     console.log('%c', devtools);
   })();
-
-  // ======= HIDE CONTENT ON DESKTOP AS LAST LAYER =======
-  const style = document.createElement('style');
-  style.innerHTML = `
-    @media (min-width: 820px) {
-      body { display: none !important; }
-    }
-  `;
-  document.head.appendChild(style);
 
 })();
