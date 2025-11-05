@@ -1,27 +1,2 @@
-function goBack() {
-    if (document.referrer) {
-        window.history.back();
-    } else {
-        window.location.href = "/";
-    }
-}
-document.addEventListener("contextmenu", (e) => e.preventDefault());
-document.addEventListener("keydown", (e) => {
-    const mod = e.ctrlKey || e.metaKey;
-    if (mod && ["c", "s", "u", "C", "S", "U"].includes(e.key)) e.preventDefault();
-    if (mod && e.shiftKey && ["I", "J", "i", "j"].includes(e.key)) e.preventDefault();
-});
-document.addEventListener("copy", (e) => {
-    const selection = document.getSelection();
-    if (!selection) return;
-    const text = selection.toString();
-    if (!text) return;
-    const attribution = "\n\n— Source: Callboys.app (Callboys.app) — Do not reuse without permission.";
-    if (e.clipboardData) {
-        e.clipboardData.setData("text/plain", text + attribution);
-        e.preventDefault();
-    }
-});
-document.addEventListener("dragstart", (e) => {
-    if (e.target.tagName === "IMG") e.preventDefault();
-});
+function goBack(){if(document.referrer){window.history.back()}else{window.location.href="/"}}
+document.addEventListener("contextmenu",(e)=>e.preventDefault());document.addEventListener("keydown",(e)=>{const mod=e.ctrlKey||e.metaKey;if(mod&&["c","s","u","C","S","U"].includes(e.key))e.preventDefault();if(mod&&e.shiftKey&&["I","J","i","j"].includes(e.key))e.preventDefault();});document.addEventListener("copy",(e)=>{const selection=document.getSelection();if(!selection)return;const text=selection.toString();if(!text)return;const attribution="\n\n— Source: Callboys.app (Callboys.app) — Do not reuse without permission.";if(e.clipboardData){e.clipboardData.setData("text/plain",text+attribution);e.preventDefault()}});document.addEventListener("dragstart",(e)=>{if(e.target.tagName==="IMG")e.preventDefault();})
