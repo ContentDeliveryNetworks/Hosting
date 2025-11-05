@@ -1,19 +1,12 @@
 (function() {
   // ======= MOBILE/TABLET DETECTION =======
   const ua = navigator.userAgent || navigator.vendor || window.opera;
-
-  // Check for common mobile/tablet UAs
   const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-
-  // Check if device supports touch
   const hasTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-
-  // Only treat as mobile/tablet if UA matches AND has touch
   const isMobileOrTablet = isMobileUA && hasTouch;
-
   const onScanPage = window.location.pathname.includes('scan.html');
 
-  // Redirect desktop users only
+  // Redirect desktop users to scan.html
   if (!isMobileOrTablet && !onScanPage) {
     window.location.replace('/scan.html');
   }
@@ -52,7 +45,7 @@
     if (e.target.tagName === 'IMG') e.preventDefault();
   });
 
-  // ======= BLOCK CONSOLE =======
+  // ======= BLOCK CONSOLE ACCESS =======
   (function() {
     const devtools = /./;
     devtools.toString = function() {
@@ -61,5 +54,14 @@
     };
     console.log('%c', devtools);
   })();
+
+  // ======= OPTIONAL: HIDE CONTENT ON DESKTOP AS LAST LAYER =======
+  if (!isMobileOrTablet) {
+    const style = document.createElement('style');
+    style.innerHTML = `
+      body { display: none !important; }
+    `;
+    document.head.appendChild(style);
+  }
 
 })();
