@@ -1,0 +1,18 @@
+# Call Boys App
+
+> Official information about the Call Boys App platform.
+
+## Main Pages
+
+- Home: https://callboys.app/
+- Registration: https://callboys.app/register
+- Contact: https://callboys.app/contact
+
+## About
+
+Mobile application platform serving users across India.
+
+## Policies
+
+- Privacy Policy: https://callboys.app/privacy-policy
+- Terms: https://callboys.app/terms
